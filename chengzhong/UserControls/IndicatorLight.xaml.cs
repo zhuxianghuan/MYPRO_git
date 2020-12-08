@@ -24,6 +24,8 @@ namespace chengzhong.UserControls
         [System.ComponentModel.Description("指示灯类别")]
         public IndicatorType Light { get => _IndicatorType; set => Draw(value); }
 
+        public new string Name { get; set; }
+
         private Brush StopColor = new SolidColorBrush(Colors.LightGray);
 
         private Brush RunningColorLight = new SolidColorBrush(Colors.DarkGreen);

@@ -37,15 +37,32 @@ namespace chengzhong
         BinaryFormatter formatter;
        
         static Event ven;
-
+        DispatcherTimer timer = new DispatcherTimer();
+        int read_tag = 0;
         public MainWindow()
         {
             InitializeComponent();
         }
-
+        private void timer_Tick(object sender, EventArgs e)
+        {
+            
+            Dictionary<string, DataTypeEnum> addresses = new Dictionary<string, DataTypeEnum>();
+            addresses.Add("m10", DataTypeEnum.Int32);
+            addresses.Add("m20", DataTypeEnum.Int32);
+            addresses.Add("m30", DataTypeEnum.Int32);
+            addresses.Add("m40", DataTypeEnum.Int32);
+            addresses.Add("m50", DataTypeEnum.Int32);
+            addresses.Add("DB0.10", DataTypeEnum.Int32);
+            var result = s1200.BatchRead(addresses);
+            if (result.IsSucceed)
+            {
+                 this.dataGrid1.ItemsSource = result.Value;
+                 read_tag = read_tag + 1;
+                 this.Title = read_tag.ToString();
+            }
+        }
         private void Window_Loaded(object sender, RoutedEventArgs e)
         {
-            //MessageBox.Show("正在连接设备，请稍后！");
             ven = new Event();
             ven.OntempChange += new Event.tempChange(ven_OntempChange);
             Task.Run(() =>
@@ -67,13 +84,10 @@ namespace chengzhong
                     {
                        
                         MessageBox.Show($"连接成功\t\t\t\t耗时：{result.TimeConsuming}ms");
-                        //   string asd=
-                        //  MessageBox.Show()
-                  
-                    
-
-
-
+                        timer.Tick += new EventHandler(timer_Tick);
+                        timer.Interval = TimeSpan.FromSeconds(1);   //设置刷新的间隔时间
+                        timer.Start();
+                        MessageBox.Show("定时读取启动！");
                     }
                 }
                 catch (Exception ex)
@@ -82,9 +96,8 @@ namespace chengzhong
                 }
                 finally
                 {
-                   
+         
                 }
-
                 string strobg = "hello zhu xianfhuan!";
                 FileStream stream = new FileStream("testaaa.dat", FileMode.Create, FileAccess.Write, FileShare.None);
                  formatter = new BinaryFormatter();
@@ -95,8 +108,6 @@ namespace chengzhong
             });
 
         }
-
-
         private void Window_Closing_1(object sender, System.ComponentModel.CancelEventArgs e)
         {
             FileStream fileStream = new FileStream("C:\\strobg.dat", FileMode.Open, FileAccess.Read, FileShare.Read);
@@ -104,19 +115,15 @@ namespace chengzhong
             MessageBox.Show(readdata);
             s1200.Close();
         }
-        public class Usermanager 
-        
+        public class Usermanager       
         {
             public Usermanager()
             {
 
             }
             public int MyProperty { get; set; }
-
-
         }
         void printHighscores()
-
         {
 
         }
@@ -147,9 +154,7 @@ namespace chengzhong
                 conn.Close();
             }
             s1200.Write("DB0.10", 99);
-            //  Thread thread = new Thread(readtag);
-            //  thread.Start();
-            readtag();
+
         }
 
         //插入记录
@@ -208,42 +213,6 @@ namespace chengzhong
                 ven.Temp = i + "aaa";
                 Thread.Sleep(1000);
             }
-
-
-        }
-
-        public void readtag()
-        {
-            Dictionary<string, DataTypeEnum> addresses = new Dictionary<string, DataTypeEnum>();
-            addresses.Add("DB0.10", DataTypeEnum.Int32);
-            addresses.Add("DB1.0", DataTypeEnum.Int32);
-            addresses.Add("DB2.0", DataTypeEnum.Int32);
-            addresses.Add("DB4.10", DataTypeEnum.Int32);
-            addresses.Add("DB8.10", DataTypeEnum.Int32);
-            addresses.Add("DB12.10", DataTypeEnum.Int32);
-
-
-           
-               
-                var result = s1200.BatchRead(addresses);
-            
-                this.Dispatcher.Invoke(DispatcherPriority.Normal, (ThreadStart)delegate
-                {
-
-                    this.dataGrid1.ItemsSource = result.Value;
-                });
-            
-
-
-            
-
-
-
-        }
-
-        private void dataGrid1_SelectionChanged(object sender, SelectionChangedEventArgs e)
-        {
-
         }
     }
 }

@@ -30,26 +30,18 @@
                     <Button x:Name="button_chaxun" Content="查询" Grid.Column="6" HorizontalAlignment="Left" Margin="172,328,0,0" VerticalAlignment="Top" Height="43" Width="84" Click="button_chaxun_Click"/>
                     <Button x:Name="button_charu" Content="插入记录" Grid.Column="2" HorizontalAlignment="Left" Margin="10,333,0,0" VerticalAlignment="Top" Height="43" Width="84" Click="button_charu_Click_1" Grid.ColumnSpan="5" />
                     <DataGrid x:Name="dataGrid" Grid.Column="2"  Margin="0,400,10,0" Grid.ColumnSpan="5"/>
-                    <usercontrols:IndicatorLight Grid.Column="2" HorizontalAlignment="Left" Height="46" Margin="29,49,0,0" VerticalAlignment="Top" Width="46"  Light="Start" RenderTransformOrigin="-12.183,-3.896" Grid.ColumnSpan="5"/>
-                
+
 
 
                 </Grid>
             </TabItem>
             <TabItem Header="手动">
-                <Grid Background="#FFE5E5E5">
-                    <Grid.ColumnDefinitions>
-                        <ColumnDefinition Width="87*"/>
-                        <ColumnDefinition Width="23*"/>
-                        <ColumnDefinition Width="1080*"/>
-                    </Grid.ColumnDefinitions>
-                    <Label x:Name="label1" Content="手动界面" Grid.Column="2" HorizontalAlignment="Left" Margin="415,0,0,0" VerticalAlignment="Top" FontSize="36"/>
-                </Grid>
+                <usercontrols:IndicatorLight  HorizontalAlignment="Left" Height="46" Margin="202,0,0,0" VerticalAlignment="Top" Width="46"  Light="Stop" RenderTransformOrigin="-12.183,-3.896"/>
             </TabItem>
             <TabItem Header="报表" HorizontalAlignment="Center" Height="20" VerticalAlignment="Center" Width="61">
                 <Grid Background="#FFE5E5E5">
                     <Label x:Name="label2" Content="报表" HorizontalAlignment="Left" Margin="560,0,0,0" VerticalAlignment="Top" FontSize="36"/>
-                    <DataGrid x:Name="dataGrid1" SelectionChanged="dataGrid1_SelectionChanged" Margin="0,376,0,0"/>
+                    <DataGrid x:Name="dataGrid1"  Margin="0,376,0,0"/>
                 </Grid>
             </TabItem>
         </TabControl>
