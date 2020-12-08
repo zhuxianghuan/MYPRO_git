@@ -24,6 +24,7 @@ using IoTClient.Enums;
 
 using System.Data.SQLite;
 using System.Threading;
+using System.Windows.Threading;
 
 namespace chengzhong
 {
@@ -66,9 +67,12 @@ namespace chengzhong
                     {
                        
                         MessageBox.Show($"连接成功\t\t\t\t耗时：{result.TimeConsuming}ms");
-                     //   string asd=
-                      //  MessageBox.Show()
-                      
+                        //   string asd=
+                        //  MessageBox.Show()
+                  
+                    
+
+
 
                     }
                 }
@@ -125,7 +129,7 @@ namespace chengzhong
         private void button_chaxun_Click(object sender, RoutedEventArgs e)
         {
             // SQLite连接字符串
-            string connectionString = @"Data Source='" + @"test.db3" + "';Version=3;";
+            string connectionString = @"Data Source='" + @"C:\Users\Administrator\Desktop\MYPRO_git\chengzhong\bin\Debug\netcoreapp3.1\test.db3" + "';Version=3;";
             // 获取指定数据库中的所有表名
             StringBuilder tableNames = new StringBuilder();
             using (SQLiteConnection conn = new SQLiteConnection(connectionString))
@@ -143,8 +147,11 @@ namespace chengzhong
                 conn.Close();
             }
             s1200.Write("DB0.10", 99);
+            //  Thread thread = new Thread(readtag);
+            //  thread.Start();
+            readtag();
         }
-        
+
         //插入记录
         private void button_charu_Click_1(object sender, RoutedEventArgs e)
         {
@@ -205,6 +212,38 @@ namespace chengzhong
 
         }
 
+        public void readtag()
+        {
+            Dictionary<string, DataTypeEnum> addresses = new Dictionary<string, DataTypeEnum>();
+            addresses.Add("DB0.10", DataTypeEnum.Int32);
+            addresses.Add("DB1.0", DataTypeEnum.Int32);
+            addresses.Add("DB2.0", DataTypeEnum.Int32);
+            addresses.Add("DB4.10", DataTypeEnum.Int32);
+            addresses.Add("DB8.10", DataTypeEnum.Int32);
+            addresses.Add("DB12.10", DataTypeEnum.Int32);
 
+
+           
+               
+                var result = s1200.BatchRead(addresses);
+            
+                this.Dispatcher.Invoke(DispatcherPriority.Normal, (ThreadStart)delegate
+                {
+
+                    this.dataGrid1.ItemsSource = result.Value;
+                });
+            
+
+
+            
+
+
+
+        }
+
+        private void dataGrid1_SelectionChanged(object sender, SelectionChangedEventArgs e)
+        {
+
+        }
     }
 }

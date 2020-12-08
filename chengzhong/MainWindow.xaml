@@ -12,22 +12,26 @@
             <TabItem Header="自动">
                 <Grid Background="#FFE5E5E5">
                     <Grid.ColumnDefinitions>
-                        <ColumnDefinition Width="7*"/>
-                        <ColumnDefinition Width="20*"/>
-                        <ColumnDefinition Width="568*"/>
+                        <ColumnDefinition Width="14*"/>
+                        <ColumnDefinition Width="40*"/>
+                        <ColumnDefinition Width="47*"/>
+                        <ColumnDefinition Width="0*"/>
+                        <ColumnDefinition Width="0*"/>
+                        <ColumnDefinition Width="0*"/>
+                        <ColumnDefinition Width="1089*"/>
                     </Grid.ColumnDefinitions>
-                    <Label x:Name="label" Content="自动界面" HorizontalAlignment="Center" Margin="10,0,0,0" VerticalAlignment="Top" FontSize="36" Grid.ColumnSpan="3"/>
-                    <Button x:Name="button_start" Content="启动" Grid.Column="2" HorizontalAlignment="Left" Margin="134,126,0,0" VerticalAlignment="Top" Height="32" Width="98"/>
-                    <Button x:Name="button_stop" Content="停止" Grid.Column="2" HorizontalAlignment="Left" Margin="367,126,0,0" VerticalAlignment="Top" Height="32" Width="98"/>
-                    <TextBox x:Name="textBox" Grid.Column="2" HorizontalAlignment="Left" Margin="183,227,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="120"/>
-                    <Label x:Name="label3" Content="设定次数" Grid.Column="2" HorizontalAlignment="Left" Margin="116,227,0,0" VerticalAlignment="Top"/>
-                    <Label x:Name="label4" Content="执行次数" Grid.Column="2" HorizontalAlignment="Left" Margin="116,296,0,0" VerticalAlignment="Top"/>
-                    <TextBox x:Name="textBox1" Grid.Column="2" HorizontalAlignment="Left" Margin="183,296,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="120"/>
-                    <Button x:Name="button_chaxun" Content="查询" Grid.Column="2" HorizontalAlignment="Left" Margin="750,206,0,0" VerticalAlignment="Top" Height="43" Width="84" Click="button_chaxun_Click"/>
-                    <Button x:Name="button_charu" Content="插入记录" Grid.Column="2" HorizontalAlignment="Left" Margin="650,206,0,0" VerticalAlignment="Top" Height="43" Width="84" Click="button_charu_Click_1" />
-                    <DataGrid x:Name="dataGrid" Grid.Column="3"  Margin="0,400,10,0"/>
-                    <usercontrols:IndicatorLight Grid.Column="2" HorizontalAlignment="Left" Height="46" Margin="603,280,0,0" VerticalAlignment="Top" Width="46"  Light="Start"/>
-
+                    <Label x:Name="label" Content="自动界面" HorizontalAlignment="Left" Margin="422,0,0,0" VerticalAlignment="Top" FontSize="36" Grid.Column="6"/>
+                    <Button x:Name="button_start" Content="启动" Grid.Column="6" HorizontalAlignment="Left" Margin="87,126,0,0" VerticalAlignment="Top" Height="32" Width="98"/>
+                    <Button x:Name="button_stop" Content="停止" Grid.Column="6" HorizontalAlignment="Left" Margin="320,126,0,0" VerticalAlignment="Top" Height="32" Width="98"/>
+                    <TextBox x:Name="textBox" Grid.Column="6" HorizontalAlignment="Left" Margin="136,227,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="120"/>
+                    <Label x:Name="label3" Content="设定次数" Grid.Column="6" HorizontalAlignment="Left" Margin="69,227,0,0" VerticalAlignment="Top"/>
+                    <Label x:Name="label4" Content="执行次数" Grid.Column="6" HorizontalAlignment="Left" Margin="69,296,0,0" VerticalAlignment="Top"/>
+                    <TextBox x:Name="textBox1" Grid.Column="6" HorizontalAlignment="Left" Margin="136,296,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="120"/>
+                    <Button x:Name="button_chaxun" Content="查询" Grid.Column="6" HorizontalAlignment="Left" Margin="172,328,0,0" VerticalAlignment="Top" Height="43" Width="84" Click="button_chaxun_Click"/>
+                    <Button x:Name="button_charu" Content="插入记录" Grid.Column="2" HorizontalAlignment="Left" Margin="10,333,0,0" VerticalAlignment="Top" Height="43" Width="84" Click="button_charu_Click_1" Grid.ColumnSpan="5" />
+                    <DataGrid x:Name="dataGrid" Grid.Column="2"  Margin="0,400,10,0" Grid.ColumnSpan="5"/>
+                    <usercontrols:IndicatorLight Grid.Column="2" HorizontalAlignment="Left" Height="46" Margin="29,49,0,0" VerticalAlignment="Top" Width="46"  Light="Start" RenderTransformOrigin="-12.183,-3.896" Grid.ColumnSpan="5"/>
+                
 
 
                 </Grid>
@@ -45,6 +49,7 @@
             <TabItem Header="报表" HorizontalAlignment="Center" Height="20" VerticalAlignment="Center" Width="61">
                 <Grid Background="#FFE5E5E5">
                     <Label x:Name="label2" Content="报表" HorizontalAlignment="Left" Margin="560,0,0,0" VerticalAlignment="Top" FontSize="36"/>
+                    <DataGrid x:Name="dataGrid1" SelectionChanged="dataGrid1_SelectionChanged" Margin="0,376,0,0"/>
                 </Grid>
             </TabItem>
         </TabControl>
