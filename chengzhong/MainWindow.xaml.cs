@@ -66,6 +66,8 @@ namespace chengzhong
                     {
                        
                         MessageBox.Show($"连接成功\t\t\t\t耗时：{result.TimeConsuming}ms");
+                     //   string asd=
+                      //  MessageBox.Show()
                       
 
                     }
@@ -80,7 +82,7 @@ namespace chengzhong
                 }
 
                 string strobg = "hello zhu xianfhuan!";
-                FileStream stream = new FileStream("C:\\strobg.dat", FileMode.Create, FileAccess.Write, FileShare.None);
+                FileStream stream = new FileStream("testaaa.dat", FileMode.Create, FileAccess.Write, FileShare.None);
                  formatter = new BinaryFormatter();
                 formatter.Serialize(stream, strobg);
                 stream.Close();
@@ -123,7 +125,7 @@ namespace chengzhong
         private void button_chaxun_Click(object sender, RoutedEventArgs e)
         {
             // SQLite连接字符串
-            string connectionString = @"Data Source='" + @"C:\Users\Administrator\Desktop\MYPRO\chengzhong\bin\Debug\netcoreapp3.1\test.db3" + "';Version=3;";
+            string connectionString = @"Data Source='" + @"test.db3" + "';Version=3;";
             // 获取指定数据库中的所有表名
             StringBuilder tableNames = new StringBuilder();
             using (SQLiteConnection conn = new SQLiteConnection(connectionString))
