@@ -1,0 +1,14 @@
+﻿<Page x:Class="chengzhong.手动"
+      xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+      xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+      xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+      xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+      xmlns:local="clr-namespace:chengzhong"
+      mc:Ignorable="d" 
+      d:DesignHeight="800" d:DesignWidth="1000"
+      Title="手动">
+
+    <Grid>
+        <Label x:Name="label" Content="手动" HorizontalAlignment="Left" Margin="339,41,0,0" VerticalAlignment="Top"/>
+    </Grid>
+</Page>

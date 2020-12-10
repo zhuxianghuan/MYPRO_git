@@ -33,16 +33,25 @@ namespace chengzhong
     /// </summary>
     public partial class MainWindow : Window
     {
-        SiemensClient s1200;
+
+        自动 p1;
+        手动 p2;
+        报表 p3;
+        public SiemensClient s1200;
         BinaryFormatter formatter;
        
         static Event ven;
         DispatcherTimer timer = new DispatcherTimer();
         int read_tag = 0;
+        public Dictionary<string,dynamic> read_res ;
         public MainWindow()
         {
             InitializeComponent();
+            p1 = new 自动();
+            p2 = new 手动();
+            p3 = new 报表(); 
         }
+        
         private void timer_Tick(object sender, EventArgs e)
         {
             
@@ -56,13 +65,17 @@ namespace chengzhong
             var result = s1200.BatchRead(addresses);
             if (result.IsSucceed)
             {
-                 this.dataGrid1.ItemsSource = result.Value;
+                // this.dataGrid1.ItemsSource = result.Value;
+                read_res = result.Value;
                  read_tag = read_tag + 1;
                  this.Title = read_tag.ToString();
             }
         }
         private void Window_Loaded(object sender, RoutedEventArgs e)
         {
+            this.frame.Content = p1;
+            p1.ParentWindow = this;
+
             ven = new Event();
             ven.OntempChange += new Event.tempChange(ven_OntempChange);
             Task.Run(() =>
@@ -103,7 +116,7 @@ namespace chengzhong
                  formatter = new BinaryFormatter();
                 formatter.Serialize(stream, strobg);
                 stream.Close();
-                printHighscores();
+           
 
             });
 
@@ -115,71 +128,7 @@ namespace chengzhong
             MessageBox.Show(readdata);
             s1200.Close();
         }
-        public class Usermanager       
-        {
-            public Usermanager()
-            {
 
-            }
-            public int MyProperty { get; set; }
-        }
-        void printHighscores()
-        {
-
-        }
-          //查询记录
-        /// <summary>
-        /// 
-        /// </summary>
-        /// <param name="sender"></param>
-        /// <param name="e"></param>
-        private void button_chaxun_Click(object sender, RoutedEventArgs e)
-        {
-            // SQLite连接字符串
-            string connectionString = @"Data Source='" + @"C:\Users\Administrator\Desktop\MYPRO_git\chengzhong\bin\Debug\netcoreapp3.1\test.db3" + "';Version=3;";
-            // 获取指定数据库中的所有表名
-            StringBuilder tableNames = new StringBuilder();
-            using (SQLiteConnection conn = new SQLiteConnection(connectionString))
-            {
-                conn.Open();
-                // 获取数据库中的所有表名
-                string sqlTableNames = "select * from tab1";
-                // 创建命令对象
-                SQLiteCommand cmd = new SQLiteCommand(sqlTableNames, conn);
-                using (SQLiteDataReader dr = cmd.ExecuteReader())
-                {
-                    this.dataGrid.ItemsSource = dr;
-               
-                }
-                conn.Close();
-            }
-            s1200.Write("DB0.10", 99);
-
-        }
-
-        //插入记录
-        private void button_charu_Click_1(object sender, RoutedEventArgs e)
-        {
-            string connectionString = @"Data Source='" + @"C:\Users\Administrator\Desktop\MYPRO\chengzhong\bin\Debug\netcoreapp3.1\test.db3" + "';Version=3;";
-            // 获取指定数据库中的所有表名
-            StringBuilder tableNames = new StringBuilder();
-            using (SQLiteConnection conn = new SQLiteConnection(connectionString))
-            {
-                conn.Open();
-                // 获取数据库中的所有表名
-                // string sqlTableNames = "INSERT INTO tab1 (time,number, value) VALUES ('2020-12-17 00:00:11',19, 20.11)";
-                string sqlTableNames = "INSERT INTO tab1 (time,number, value) VALUES (@time,19, 20.11)";
-
-                // 创建命令对象
-                SQLiteCommand cmd = new SQLiteCommand(sqlTableNames, conn);
-                cmd.Parameters.Add(new SQLiteParameter("@time", DateTime.Now));
-                cmd.ExecuteNonQuery();
-                MessageBox.Show("done");
-                conn.Close();
-
-               
-            }
-        }
         class Event
         {
             public delegate void tempChange(object sender, EventArgs e);
@@ -213,6 +162,26 @@ namespace chengzhong
                 ven.Temp = i + "aaa";
                 Thread.Sleep(1000);
             }
+        }
+        
+
+        private void button_auto_Click(object sender, RoutedEventArgs e)
+        {
+            this.frame.Content = p1;
+            p1.ParentWindow = this;
+        }
+
+        private void button_manul_Click(object sender, RoutedEventArgs e)
+        {
+            this.frame.Content = p2;
+            p2.ParentWindow = this;
+
+        }
+
+        private void button_report_Click(object sender, RoutedEventArgs e)
+        {
+            this.frame.Content = p3;
+            p3.ParentWindow = this;
         }
     }
 }

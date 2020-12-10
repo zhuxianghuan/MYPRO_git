@@ -6,45 +6,11 @@
         xmlns:local="clr-namespace:chengzhong"
         mc:Ignorable="d"
             xmlns:usercontrols="clr-namespace:chengzhong.UserControls"
-        Title="称重控制系统" Height="800" Width="1200" Closing="Window_Closing_1" Loaded="Window_Loaded" >
+        Title="称重控制系统" Height="800" Width="1200" Loaded="Window_Loaded"  Closing="Window_Closing_1" >
     <Grid>
-        <TabControl x:Name="tabControl">
-            <TabItem Header="自动">
-                <Grid Background="#FFE5E5E5">
-                    <Grid.ColumnDefinitions>
-                        <ColumnDefinition Width="14*"/>
-                        <ColumnDefinition Width="40*"/>
-                        <ColumnDefinition Width="47*"/>
-                        <ColumnDefinition Width="0*"/>
-                        <ColumnDefinition Width="0*"/>
-                        <ColumnDefinition Width="0*"/>
-                        <ColumnDefinition Width="1089*"/>
-                    </Grid.ColumnDefinitions>
-                    <Label x:Name="label" Content="自动界面" HorizontalAlignment="Left" Margin="422,0,0,0" VerticalAlignment="Top" FontSize="36" Grid.Column="6"/>
-                    <Button x:Name="button_start" Content="启动" Grid.Column="6" HorizontalAlignment="Left" Margin="87,126,0,0" VerticalAlignment="Top" Height="32" Width="98"/>
-                    <Button x:Name="button_stop" Content="停止" Grid.Column="6" HorizontalAlignment="Left" Margin="320,126,0,0" VerticalAlignment="Top" Height="32" Width="98"/>
-                    <TextBox x:Name="textBox" Grid.Column="6" HorizontalAlignment="Left" Margin="136,227,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="120"/>
-                    <Label x:Name="label3" Content="设定次数" Grid.Column="6" HorizontalAlignment="Left" Margin="69,227,0,0" VerticalAlignment="Top"/>
-                    <Label x:Name="label4" Content="执行次数" Grid.Column="6" HorizontalAlignment="Left" Margin="69,296,0,0" VerticalAlignment="Top"/>
-                    <TextBox x:Name="textBox1" Grid.Column="6" HorizontalAlignment="Left" Margin="136,296,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="120"/>
-                    <Button x:Name="button_chaxun" Content="查询" Grid.Column="6" HorizontalAlignment="Left" Margin="172,328,0,0" VerticalAlignment="Top" Height="43" Width="84" Click="button_chaxun_Click"/>
-                    <Button x:Name="button_charu" Content="插入记录" Grid.Column="2" HorizontalAlignment="Left" Margin="10,333,0,0" VerticalAlignment="Top" Height="43" Width="84" Click="button_charu_Click_1" Grid.ColumnSpan="5" />
-                    <DataGrid x:Name="dataGrid" Grid.Column="2"  Margin="0,400,10,0" Grid.ColumnSpan="5"/>
-
-
-
-                </Grid>
-            </TabItem>
-            <TabItem Header="手动">
-                <usercontrols:IndicatorLight  HorizontalAlignment="Left" Height="46" Margin="202,0,0,0" VerticalAlignment="Top" Width="46"  Light="Stop" RenderTransformOrigin="-12.183,-3.896"/>
-            </TabItem>
-            <TabItem Header="报表" HorizontalAlignment="Center" Height="20" VerticalAlignment="Center" Width="61">
-                <Grid Background="#FFE5E5E5">
-                    <Label x:Name="label2" Content="报表" HorizontalAlignment="Left" Margin="560,0,0,0" VerticalAlignment="Top" FontSize="36"/>
-                    <DataGrid x:Name="dataGrid1"  Margin="0,376,0,0"/>
-                </Grid>
-            </TabItem>
-        </TabControl>
-
+        <Frame x:Name="frame"   NavigationUIVisibility="Hidden" HorizontalAlignment="Center"  Margin="200,0,0,0" Width="1000" />
+        <Button x:Name="button_auto" Content="自动" HorizontalAlignment="Left" Margin="5,40,0,0" VerticalAlignment="Top" Height="60" Width="190" Click="button_auto_Click" />
+        <Button x:Name="button_manul" Content="手动" HorizontalAlignment="Left" Margin="5,120,0,0" VerticalAlignment="Top" Height="60" Width="190" Click="button_manul_Click"/>
+        <Button x:Name="button_report" Content="报表" HorizontalAlignment="Left" Margin="5,200,0,0" VerticalAlignment="Top" Height="60" Width="190" Click="button_report_Click"/>
     </Grid>
 </Window>
